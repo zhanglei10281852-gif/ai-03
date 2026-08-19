@@ -22,12 +22,6 @@ func RequestID(ctx context.Context) string {
 	return value
 }
 
-func AuthenticatedContext(principal domain.Principal) context.Context {
-	ctx := context.Background()
-	ctx = context.WithValue(ctx, requestIDKey, "")
-	return context.WithValue(ctx, principalKey, principal)
-}
-
 func WithPrincipal(ctx context.Context, principal domain.Principal) context.Context {
 	return context.WithValue(ctx, principalKey, principal)
 }

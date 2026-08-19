@@ -82,8 +82,7 @@ func (s *Server) auth(next http.Handler) http.Handler {
 			writeError(w, r, err)
 			return
 		}
-		authenticated := requestmeta.AuthenticatedContext(principal)
-		next.ServeHTTP(w, r.WithContext(authenticated))
+		next.ServeHTTP(w, r.WithContext(requestmeta.WithPrincipal(r.Context(), principal)))
 	})
 }
 
